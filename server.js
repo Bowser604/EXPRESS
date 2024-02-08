@@ -59,7 +59,7 @@ app.get('/movies/title', (req, res) => {
         res.status(400).send('Movie not found');
     }
     
-})
+});
 
 
 // app.get('/', (request, response) => {
