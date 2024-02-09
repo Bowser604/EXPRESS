@@ -4,6 +4,7 @@ const express = require('express');
       uuid = require('uuid');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 let users = [
     {
@@ -18,7 +19,7 @@ let users = [
     },
 ]
 
-let movies = [
+let topMovies = [
     {
         "Tittle":"The Fountain",
         "Description":"A scientist",
@@ -28,7 +29,7 @@ let movies = [
         },
         "Director": {
             "Name":"Darren Aronofsky",
-        },
+        }
     },
     {
         "Title":"The Princess Bride",
@@ -39,9 +40,11 @@ let movies = [
         },
         "Director": {
             "Name":"Rob Reiner",
-        },
-    },
+        }
+    }
 ];
+
+
 
 // READ
 app.get('/movies', (req, res) => {
@@ -49,9 +52,9 @@ app.get('/movies', (req, res) => {
 })
 
 // READ
-app.get('/movies/title', (req, res) => {
-    const title = req.params.title;
-    const movie = movies.find( movie => movie.title === title );
+app.get('/movies/:title', (req, res) => {
+    const { title } = req.params;
+    const movie = movie.find( movie => movie.Title === title );
 
     if (movie) {
         res.status(200).send(movie);
@@ -60,6 +63,20 @@ app.get('/movies/title', (req, res) => {
     }
     
 });
+
+// READ
+app.get('/movies/genre/:genreName', (req, res) => {
+    const { genreName } = req.params;
+    const genre = movie.find( movie => movie.Genre.Name === GenreName ).Genre;
+
+    if (genre) {
+        res.status(200).send(genre);
+    } else {
+        res.status(400).send('Genre not found');
+    }
+    
+});
+
 
 
 // app.get('/', (request, response) => {
