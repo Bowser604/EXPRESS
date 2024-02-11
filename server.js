@@ -1,7 +1,7 @@
 const express = require('express');
-      app = express();
-      bodyParser = require('body-parser'),
-      uuid = require('uuid');
+const app = express();
+const bodyParser = require('body-parser');
+const uuid = require('uuid');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,20 +48,19 @@ let topMovies = [
 
 // READ
 app.get('/movies', (req, res) => {
-    res.status(200).json(movies);
-})
+    res.status(200).json(topMovies);
+});
 
 // READ
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
-    const movie = movie.find( movie => movie.Title === title );
+    const movie = topMovies.find(movie => movie.Title === title);
 
     if (movie) {
         res.status(200).send(movie);
     } else {
         res.status(400).send('Movie not found');
-    }
-    
+    }  
 });
 
 // READ
@@ -83,5 +82,5 @@ app.get('/movies/genre/:genreName', (req, res) => {
 //     response.send('hello world')
 // })
 
-app.listen(8081, () => console.log("listening on 8081"))
+app.listen(8080, () => console.log("listening on 8080"))
  
