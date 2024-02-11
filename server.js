@@ -53,8 +53,8 @@ app.get('/movies', (req, res) => {
 
 // READ
 app.get('/movies/:title', (req, res) => {
-    const { title } = req.params;
-    const movie = topMovies.find(movie => movie.Title === title);
+    const {title} = req.params;
+    const movie = topMovies.find( movie => movie.Title === title );
 
     if (movie) {
         res.status(200).send(movie);
@@ -82,5 +82,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
 //     response.send('hello world')
 // })
 
-app.listen(8080, () => console.log("listening on 8080"))
+app.listen(8080, () => {
+    console.log('Your app is listening on port 8080');
+});
  
